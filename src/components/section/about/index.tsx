@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { AboutContainerStyled, AboutContentStyled } from "./styled";
 import AtomButton from "@Src/components/atoms/button";
+import { motion } from "framer-motion";
 
 type Props = {};
 

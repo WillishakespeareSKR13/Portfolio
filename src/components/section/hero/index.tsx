@@ -7,6 +7,7 @@ import {
 } from "./styled";
 import LogoBackground from "@Assets/logoBackground.svg";
 import AtomButton from "@Src/components/atoms/button";
+import LogoBig from "@Assets/logoBig.svg";
 
 type Props = {};
 
@@ -28,7 +29,9 @@ const SectionHero: FC<Props> = () => {
             <AtomButton backgroundColor="#373434">See my projects</AtomButton>
           </div>
         </HeroContentTextStyled>
-        <HeroContentImgStyled src="/images/faces.png" alt="" />
+        <HeroContentImgStyled>
+          <LogoBig />
+        </HeroContentImgStyled>
       </HeroContentStyled>
     </HeroContainerStyled>
   );

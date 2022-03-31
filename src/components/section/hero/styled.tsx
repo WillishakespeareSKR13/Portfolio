@@ -93,12 +93,21 @@ export const HeroContentTextStyled = styled.div`
   }
 `;
 
-export const HeroContentImgStyled = styled.img`
-  background-color: #0c0c0c;
+export const HeroContentImgStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    path {
+      fill: #1e1c1c;
+    }
+  }
   height: 65%;
-  max-height: 450px;
-  border: 4px solid white;
-  border-radius: 100%;
+  width: max-content;
+  max-height: 500px;
   @media (max-width: 1024px) {
     display: none;
   }

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, forwardRef, RefObject } from "react";
 import {
   HeroContainerStyled,
   HeroContentImgStyled,
@@ -9,11 +9,15 @@ import LogoBackground from "@Assets/logoBackground.svg";
 import AtomButton from "@Src/components/atoms/button";
 import LogoBig from "@Assets/logoBig.svg";
 
-type Props = {};
+type Props = {
+  id?: string;
+};
 
-const SectionHero: FC<Props> = () => {
+const SectionHero = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { id } = props;
+
   return (
-    <HeroContainerStyled>
+    <HeroContainerStyled ref={ref} id={id}>
       <HeroContentStyled>
         <LogoBackground />
         <HeroContentTextStyled>
@@ -35,6 +39,6 @@ const SectionHero: FC<Props> = () => {
       </HeroContentStyled>
     </HeroContainerStyled>
   );
-};
+});
 
 export default SectionHero;

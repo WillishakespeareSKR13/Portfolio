@@ -1,13 +1,15 @@
-import { FC } from "react";
+import { FC, forwardRef, RefObject } from "react";
 import { AboutContainerStyled, AboutContentStyled } from "./styled";
 import AtomButton from "@Src/components/atoms/button";
-import { motion } from "framer-motion";
 
-type Props = {};
+type Props = {
+  id?: string;
+};
 
-const SectionAbout: FC<Props> = () => {
+const SectionAbout = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { id } = props;
   return (
-    <AboutContainerStyled>
+    <AboutContainerStyled ref={ref} id={id}>
       <AboutContentStyled>
         <h3>
           <b>About</b> Me
@@ -41,6 +43,6 @@ const SectionAbout: FC<Props> = () => {
       </AboutContentStyled>
     </AboutContainerStyled>
   );
-};
+});
 
 export default SectionAbout;

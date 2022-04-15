@@ -1,5 +1,6 @@
-import { FC, useEffect, useState } from "react";
+import { FC, RefObject, useEffect, useState } from "react";
 import {
+  LabelLiStyled,
   NavigationContainerStyled,
   NavigationSocialContainerStyled,
   NavigationStyled,
@@ -13,10 +14,32 @@ import Twitter from "@Assets/tw.svg";
 
 export type Props = {
   scroll?: boolean;
+  valueKey?: string;
+  refs?: RefObject<HTMLDivElement>[];
 };
 
-const OrganimNavigation: FC<Props> = () => {
-  const [scroll, setScroll] = useState(false);
+const LABELS = [
+  {
+    key: "HERO",
+    label: "Home",
+  },
+  {
+    key: "ABOUT",
+    label: "About",
+  },
+  {
+    key: "PROJECT",
+    label: "Project",
+  },
+  {
+    key: "CV",
+    label: "CV",
+  },
+];
+
+const OrganimNavigation: FC<Props> = (props) => {
+  const { valueKey, refs } = props;
+  const [scroll, setScroll] = useState(true);
 
   const getScroll = () => {
     setScroll(window.scrollY > 100);
@@ -31,15 +54,25 @@ const OrganimNavigation: FC<Props> = () => {
       window.removeEventListener(`scroll`, getScroll, true);
     };
   });
-  console.log(scroll);
   return (
     <NavigationStyled scroll={scroll}>
       <NavigationContainerStyled>
         <NavigationUlStyled>
-          <li>Home</li>
-          <li>About</li>
-          <li>Project</li>
-          <li>CV</li>
+          {LABELS.map(({ key, label }) => (
+            <LabelLiStyled
+              key={key}
+              active={key === valueKey}
+              onClick={() => {
+                const findRef = refs?.find((ref) => ref?.current?.id === key);
+                window.scrollTo({
+                  top: (findRef?.current?.offsetTop ?? 0) + -90,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              {label}
+            </LabelLiStyled>
+          ))}
         </NavigationUlStyled>
         <Logo />
         <NavigationSocialContainerStyled>

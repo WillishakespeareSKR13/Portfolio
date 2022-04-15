@@ -33,6 +33,7 @@ export const HeroContentStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  padding: 0px;
   margin: 90px 100px 90px 100px;
   position: relative;
   z-index: 2;
@@ -44,6 +45,12 @@ export const HeroContentStyled = styled.div`
     margin: auto 0 auto auto;
     height: 90%;
     z-index: -1;
+  }
+  @media (max-width: 1440px) {
+    padding: 90px;
+  }
+  @media (max-width: 1024px) {
+    padding: 0px;
   }
 `;
 

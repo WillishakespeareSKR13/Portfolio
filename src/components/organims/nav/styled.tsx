@@ -1,3 +1,4 @@
+import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Props } from "./index";
 
@@ -55,4 +56,19 @@ export const NavigationSocialContainerStyled = styled.ul`
   @media (max-width: 1024px) {
     display: none;
   }
+`;
+
+type LabelLiStyledProps = {
+  active: boolean;
+};
+
+export const LabelLiStyled = styled.li<LabelLiStyledProps>`
+  padding: 0px 0px 5px 0px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  ${({ active }) =>
+    active &&
+    css`
+      border-bottom: 2px solid #c93c3c;
+    `}
 `;

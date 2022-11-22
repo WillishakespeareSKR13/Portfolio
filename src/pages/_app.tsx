@@ -1,13 +1,15 @@
 import type { AppProps } from "next/app";
-import GlobalStyles from "@Styles/globalStyled";
 import { FC } from "react";
+import { ContextNormalize } from "@stacklycore/ui";
+import LayoutMain from "@Src/layouts/main";
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <>
-      <GlobalStyles />
-      <Component {...pageProps} />
-    </>
+    <ContextNormalize>
+      <LayoutMain>
+        <Component {...pageProps} />
+      </LayoutMain>
+    </ContextNormalize>
   );
 };
 

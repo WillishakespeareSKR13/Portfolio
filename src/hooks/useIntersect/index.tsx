@@ -2,15 +2,17 @@ import { useEffect, useMemo, useState } from "react";
 import { LoadObserver } from "./config";
 import { Intersec, IObserver, Target } from "./types";
 
-const Observer: IObserver = (array, callback, opts) => {
+const useIntersect: IObserver = (array, callback, opts) => {
   const [entries, setEntries] = useState<Intersec>([]);
   const observer = useMemo(() => LoadObserver(setEntries, opts), [opts]);
 
   useEffect(() => {
     if (observer) observer?.disconnect();
-    array?.map((ref) => ref.current && observer?.observe(ref?.current));
+    array?.map(
+      (ref) => ref?.ref?.current && observer?.observe(ref?.ref?.current)
+    );
     return () => observer?.disconnect();
-  }, [observer]);
+  }, [observer, array]);
 
   useEffect(() => {
     entries?.map((entry) => {
@@ -22,4 +24,4 @@ const Observer: IObserver = (array, callback, opts) => {
   return [entries, observer];
 };
 
-export default Observer;
+export default useIntersect;

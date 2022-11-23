@@ -3,18 +3,16 @@ import {
   AtomButton,
   AtomText,
   AtomWrapper,
-  backgroundColorFlat,
-  backgroundColorOutline,
   ChangeBrightness,
   ChangeTransparency,
   css,
-  IsBackDark,
 } from "@stacklycore/ui";
 import useRefJotai from "@Src/hooks/useRefJotai";
 import { useAtomValue } from "jotai";
 import { AnimatePresence, motion } from "framer-motion";
 import { SelectAtom } from "@Src/jotai/labels";
 import { PrimaryColorAtom } from "@Src/jotai/primaryColor";
+import { ButtonFlatCSS, ButtonOutlinedCSS } from "@Src/css/button";
 
 const Hero = () => {
   const primaryColor = useAtomValue(PrimaryColorAtom);
@@ -106,37 +104,17 @@ const Hero = () => {
           `}
         >
           <AtomButton
+            disabledAnimation
             css={() => css`
-              padding: 10px 30px;
-              ${backgroundColorFlat(primaryColor)};
-              border: 1px solid ${primaryColor};
-              color: ${IsBackDark(primaryColor)} !important;
-              font-weight: 700 !important;
-              :hover {
-                ${backgroundColorFlat(ChangeBrightness(primaryColor, -20))};
-                color: ${IsBackDark(
-                  ChangeBrightness(primaryColor, -20)
-                )} !important;
-                border: 1px solid ${ChangeBrightness(primaryColor, 100)};
-              }
+              ${ButtonFlatCSS(primaryColor)}
             `}
           >
             See my projects
           </AtomButton>
           <AtomButton
+            disabledAnimation
             css={() => css`
-              padding: 10px 30px;
-              ${backgroundColorOutline(primaryColor)};
-              border: 2px solid ${primaryColor};
-              color: ${primaryColor} !important;
-              font-weight: 700 !important;
-              :hover {
-                ${backgroundColorOutline(ChangeBrightness(primaryColor, -20))};
-                color: ${IsBackDark(
-                  ChangeBrightness(primaryColor, -20)
-                )} !important;
-                border: 1px solid ${ChangeBrightness(primaryColor, 100)};
-              }
+              ${ButtonOutlinedCSS(primaryColor)}
             `}
           >
             Go to CV
@@ -162,8 +140,9 @@ const Hero = () => {
             top: 0;
             left: 0;
             width: 2px;
-            height: 999999%;
+            height: 400vh;
             background: ${primaryColor};
+            box-shadow: 0px 0 8px ${primaryColor};
             z-index: 1;
             transition: all 0.3s ease-in-out;
           }

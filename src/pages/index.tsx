@@ -1,5 +1,6 @@
 import About from "@Src/components/about";
 import Hero from "@Src/components/hero";
+import Projects from "@Src/components/projects";
 import useRefJotai from "@Src/hooks/useRefJotai";
 import { AtomText, AtomWrapper, css } from "@stacklycore/ui";
 import { FC } from "react";
@@ -7,13 +8,13 @@ import { FC } from "react";
 type Props = {};
 
 const Home: FC<Props> = () => {
-  const { ref: ref3 } = useRefJotai("PROJECT");
-  const { ref: ref4 } = useRefJotai("CV");
+  const { ref: ref4 } = useRefJotai("CONTACT");
   return (
     <>
       <Hero />
       <About />
-      {[ref3, ref4].map((key, idx) => (
+      <Projects />
+      {[ref4].map((key, idx) => (
         <AtomWrapper
           key={`key-${idx}`}
           ref={key}

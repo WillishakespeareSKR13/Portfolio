@@ -1,16 +1,12 @@
 import {
   AtomButton,
-  AtomIcon,
-  AtomInput,
+  AtomLink,
   AtomWrapper,
   ChangeBrightness,
   ChangeTransparency,
-  colorIcon,
   css,
-  IsBackDark,
   wrapperBlur,
 } from "@stacklycore/ui";
-import { useState, useEffect } from "react";
 import { atom, useAtomValue, useAtom } from "jotai";
 
 import Logo from "@Assets/logo.svg";
@@ -37,8 +33,8 @@ const LabelsAtom = atom([
     label: "Project",
   },
   {
-    key: "CV",
-    label: "CV",
+    key: "CONTACT",
+    label: "Contact",
   },
 ]);
 
@@ -51,6 +47,25 @@ const LabelsWithRefAtom = atom((get) =>
 
 const SelectAtom = atom("HERO");
 const isScrollAtom = atom(false);
+
+const Urls = [
+  {
+    icon: <FB />,
+    url: "https://www.facebook.com/willishakespeare13/",
+  },
+  {
+    icon: <Linkedin />,
+    url: "https://www.linkedin.com/in/william-jesus-covarrubias-ramos-84410339/",
+  },
+  {
+    icon: <Github />,
+    url: "https://github.com/WillishakespeareSKR13",
+  },
+  {
+    icon: <Twitter />,
+    url: "https://twitter.com/William36924486",
+  },
+];
 
 const Navigation = () => {
   const { refs } = useRefJotai();
@@ -119,13 +134,16 @@ const Navigation = () => {
           {labelWithRef.map(({ key, ref, label }) => (
             <AtomButton
               key={key}
+              disabledAnimation
               onClick={() => {
                 window.scrollTo({
-                  top: ref?.ref?.current?.offsetTop ?? 0,
+                  top: (ref?.ref?.current?.offsetTop ?? 0) + -120,
                   behavior: "smooth",
                 });
               }}
               css={() => css`
+                transition: all 0.2s ease;
+                position: relative;
                 background-color: transparent;
                 padding: 0px 30px;
                 height: 100%;
@@ -133,17 +151,37 @@ const Navigation = () => {
                 border-radius: 0px;
                 border: 2px solid transparent;
                 border-bottom: 2px solid transparent;
+
+                :after {
+                  content: "";
+                  position: absolute;
+                  bottom: -4px;
+                  left: 0px;
+                  width: 100%;
+                  height: 2px;
+                  background-color: ${primaryColor};
+                  filter: blur(4px);
+                  box-shadow: 0px 2px 10px 0px ${primaryColor};
+                  opacity: 0;
+                }
                 :hover {
+                  :after {
+                    opacity: 1;
+                  }
                   ${wrapperBlur(
                     ChangeTransparency(primaryColor, 10) ??
                       ChangeTransparency("#fff", 10)
                   )}
-                  border: 2px solid ${primaryColor};
+                  border: 2px solid transparent;
+                  border-bottom: 2px solid ${primaryColor};
                 }
 
                 ${key === select &&
                 css`
                   border-bottom: 2px solid ${primaryColor};
+                  :after {
+                    opacity: 1;
+                  }
                 `}
               `}
             >
@@ -152,11 +190,27 @@ const Navigation = () => {
           ))}
         </AtomWrapper>
         <Logo />
-        <AtomInput
-          input={{
-            placeholder: "Search",
-          }}
-        />
+        <AtomWrapper
+          css={() => css`
+            flex-direction: row;
+            width: max-content;
+            background-color: transparent;
+            gap: 40px;
+            padding: 0px 40px;
+          `}
+        >
+          {Urls.map(({ icon, url }) => (
+            <AtomLink
+              href={url}
+              css={() => css`
+                cursor: pointer;
+              `}
+              target="_blank"
+            >
+              {icon}
+            </AtomLink>
+          ))}
+        </AtomWrapper>
       </AtomWrapper>
     </AtomWrapper>
   );

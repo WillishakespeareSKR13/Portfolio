@@ -73,7 +73,7 @@ const About = () => {
           `}
         >
           Hi there! I'm <b>William Jesus</b>, I'm a{" "}
-          <b>Senior Frontend Developer</b> and <b>UI Designer</b> from Mexico. I
+          <b>Senior Frontend Developer</b> and <b>UI/UX Developer</b> from Mexico. I
           have more than 3 years of experience in the software industry, I have
           worked with different technologies and I have participated in
           different projects.

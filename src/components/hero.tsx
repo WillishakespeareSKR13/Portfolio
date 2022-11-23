@@ -17,7 +17,7 @@ import { ButtonFlatCSS, ButtonOutlinedCSS } from "@Src/css/button";
 const Hero = () => {
   const primaryColor = useAtomValue(PrimaryColorAtom);
   const select = useAtomValue(SelectAtom);
-  const { ref } = useRefJotai("HERO");
+  const { ref, refs } = useRefJotai("HERO");
 
   return (
     <AtomWrapper
@@ -105,6 +105,15 @@ const Hero = () => {
         >
           <AtomButton
             disabledAnimation
+            onClick={() => {
+              const ProjectRef =
+                refs?.find((e) => e.id === "PROJECT")?.ref?.current
+                  ?.offsetTop ?? 0;
+              window.scrollTo({
+                top: ProjectRef - 120,
+                behavior: "smooth",
+              });
+            }}
             css={() => css`
               ${ButtonFlatCSS(primaryColor)}
             `}
@@ -112,6 +121,12 @@ const Hero = () => {
             See my projects
           </AtomButton>
           <AtomButton
+            onClick={() => {
+              window.open(
+                "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/pdf/CovarrubiasRamosWilliamCV_English.pdf",
+                "_blank"
+              );
+            }}
             disabledAnimation
             css={() => css`
               ${ButtonOutlinedCSS(primaryColor)}

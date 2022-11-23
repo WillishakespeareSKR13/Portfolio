@@ -16,7 +16,7 @@ const useChangeKey = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setSelectKey((key) => (key >= colors.length - 1 ? 0 : key + 1));
-    }, 6000);
+    }, 10000);
     return () => clearInterval(interval);
   }, [selectKey, colors]);
 };

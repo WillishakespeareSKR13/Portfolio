@@ -54,7 +54,7 @@ const Hero = () => {
           }
         `}
       >
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           <AtomText
             as="p"
             key={select}

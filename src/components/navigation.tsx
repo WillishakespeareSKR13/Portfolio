@@ -72,7 +72,6 @@ const Navigation = () => {
   const labelWithRef = useAtomValue(LabelsWithRefAtom);
   const primaryColor = useAtomValue(PrimaryColorAtom);
   const [select, setSelect] = useAtom(SelectAtom);
-  const [isScroll, setIsScroll] = useAtom(isScrollAtom);
 
   useIntersect(refs, (entry) => {
     const target = entry.target as HTMLDivElement;
@@ -80,7 +79,6 @@ const Navigation = () => {
     setSelect(entry.isIntersecting ? ref?.id ?? "HERO" : select);
   });
 
-  useScroll((scroll) => setIsScroll(scroll > 20));
 
   return (
     <AtomWrapper
@@ -96,16 +94,15 @@ const Navigation = () => {
         z-index: 9999;
         justify-content: center;
         align-items: center;
-        ${isScroll &&
-        css`
+       
           ${wrapperBlur(
-            ChangeTransparency(theme?.header?.properties?.blur, 10) ??
-              ChangeTransparency("#fff", 10)
-          )}
+        ChangeTransparency(theme?.header?.properties?.blur, 10) ??
+        ChangeTransparency("#fff", 10)
+      )}
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
           border-bottom: 1px solid
             ${ChangeBrightness(theme?.header?.properties?.background, 20)};
-        `};
+        
       `}
     >
       <AtomWrapper
@@ -169,9 +166,9 @@ const Navigation = () => {
                     opacity: 1;
                   }
                   ${wrapperBlur(
-                    ChangeTransparency(primaryColor, 10) ??
-                      ChangeTransparency("#fff", 10)
-                  )}
+                ChangeTransparency(primaryColor, 10) ??
+                ChangeTransparency("#fff", 10)
+              )}
                   border: 2px solid transparent;
                   border-bottom: 2px solid ${primaryColor};
                 }

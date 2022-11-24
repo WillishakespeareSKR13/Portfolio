@@ -3,6 +3,7 @@ import { KeyAtom } from "@Src/jotai/key";
 import { useTheme } from "@stacklycore/ui";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
+import useTimer from "../useTimer";
 
 const useChangeKey = () => {
   const { theme } = useTheme();
@@ -13,12 +14,14 @@ const useChangeKey = () => {
     () => setColors(Object.values(theme?.general?.color ?? {})),
     [theme]
   );
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSelectKey((key) => (key >= colors.length - 1 ? 0 : key + 1));
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [selectKey, colors]);
+
+  const { setTimer } = useTimer({
+    end: 10,
+    callback: () => {
+      setSelectKey((prev) => (prev + 1) % colors.length);
+      setTimer(() => 0);
+    },
+  });
 };
 
 export default useChangeKey;

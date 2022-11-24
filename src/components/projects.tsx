@@ -115,8 +115,10 @@ const Projects = () => {
 
             if (swipe < -swipeConfidenceThreshold) {
               setProjectImages("LEFT");
+              setTimerImages(() => 0);
             } else if (swipe > swipeConfidenceThreshold) {
               setProjectImages("RIGHT");
+              setTimerImages(() => 0);
             }
           }}
           css={() => css`
@@ -167,6 +169,7 @@ const Projects = () => {
             `}
             onClick={() => {
               setProjectImages("RIGHT");
+              setTimerImages(() => 0);
             }}
           >
             {`<`}
@@ -185,6 +188,7 @@ const Projects = () => {
             `}
             onClick={() => {
               setProjectImages("LEFT");
+              setTimerImages(() => 0);
             }}
           >
             {`>`}

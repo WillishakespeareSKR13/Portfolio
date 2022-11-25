@@ -102,7 +102,6 @@ export const ProjectImagesAtom = atom(
     }));
     const projectImagesOrder = get(ProjectImagesOrderAtom);
     const imagesSorted = projectImagesOrder.map((idx) => images[idx]);
-    /// show only 3 images
     const imagesToShow = [
       imagesSorted[imagesSorted.length - 1],
       ...imagesSorted.slice(0, 2),
@@ -114,17 +113,15 @@ export const ProjectImagesAtom = atom(
       sorted: imagesToShow,
     };
   },
-  (get, set, arg: EnumDirection) => {
-    const order = get(ProjectImagesOrderAtom);
+  (_, set, arg: EnumDirection) => {
     switch (arg) {
       case "LEFT":
         set(ProjectImagesDirectionAtom, arg);
-        set(ProjectImagesOrderAtom, [...order, order[0]].slice(1));
+        set(ProjectImagesOrderAtom, (order) => [...order, order[0]].slice(1));
         break;
       case "RIGHT":
         set(ProjectImagesDirectionAtom, arg);
-        set(
-          ProjectImagesOrderAtom,
+        set(ProjectImagesOrderAtom, (order) =>
           [order[order.length - 1], ...order].slice(0, -1)
         );
         break;

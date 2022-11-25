@@ -8,20 +8,22 @@ import useTimer from "../useTimer";
 const useChangeKey = () => {
   const { theme } = useTheme();
   const [colors, setColors] = useAtom(ColorsAtom);
-  const [selectKey, setSelectKey] = useAtom(KeyAtom);
+  const [_, setSelectKey] = useAtom(KeyAtom);
 
   useEffect(
     () => setColors(Object.values(theme?.general?.color ?? {})),
     [theme]
   );
 
-  const { setTimer } = useTimer({
+  const { setTimer, timer } = useTimer({
+    key: "CHANGECOLOR",
     end: 10,
     callback: () => {
       setSelectKey((prev) => (prev + 1) % colors.length);
       setTimer(() => 0);
     },
   });
+  return { setTimer, timer };
 };
 
 export default useChangeKey;

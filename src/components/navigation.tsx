@@ -16,8 +16,8 @@ import Github from "@Assets/git.svg";
 import Twitter from "@Assets/tw.svg";
 import useRefJotai, { RefsAtom } from "@Src/hooks/useRefJotai";
 import useIntersect from "@Src/hooks/useIntersect";
-import useScroll from "@Src/hooks/useScroll";
 import { PrimaryColorAtom } from "@Src/jotai/primaryColor";
+import useChangeKey from "@Src/hooks/useChangeKey";
 
 const LabelsAtom = atom([
   {
@@ -46,7 +46,6 @@ const LabelsWithRefAtom = atom((get) =>
 );
 
 const SelectAtom = atom("HERO");
-const isScrollAtom = atom(false);
 
 const Urls = [
   {
@@ -79,6 +78,7 @@ const Navigation = () => {
     setSelect(entry.isIntersecting ? ref?.id ?? "HERO" : select);
   });
 
+  const { timer } = useChangeKey();
 
   return (
     <AtomWrapper
@@ -94,22 +94,32 @@ const Navigation = () => {
         z-index: 9999;
         justify-content: center;
         align-items: center;
-       
-          ${wrapperBlur(
-        ChangeTransparency(theme?.header?.properties?.blur, 10) ??
-        ChangeTransparency("#fff", 10)
-      )}
-          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-          border-bottom: 1px solid
-            ${ChangeBrightness(theme?.header?.properties?.background, 20)};
-        
+
+        ${wrapperBlur(
+          ChangeTransparency(theme?.header?.properties?.blur, 10) ??
+            ChangeTransparency("#fff", 10)
+        )}
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid
+          ${ChangeBrightness(theme?.header?.properties?.background, 20)};
+
+        ::before {
+          content: "";
+          filter: blur(1px);
+          border-radius: 10px;
+          background-color: ${primaryColor};
+          box-shadow: 0px 0px 5px 1px ${ChangeTransparency(primaryColor, 80)};
+          height: 1px;
+          width: ${(timer?.timer * 100) / timer?.end}%;
+          transition: all 0.98s linear;
+        }
       `}
     >
       <AtomWrapper
         css={() => css`
           max-width: 1440px;
           flex-direction: row;
-          padding: 5px 90px 0px 90px;
+          padding: 0px 90px 0px 90px;
           justify-content: space-between;
           align-items: center;
           height: 80px;
@@ -166,9 +176,9 @@ const Navigation = () => {
                     opacity: 1;
                   }
                   ${wrapperBlur(
-                ChangeTransparency(primaryColor, 10) ??
-                ChangeTransparency("#fff", 10)
-              )}
+                    ChangeTransparency(primaryColor, 10) ??
+                      ChangeTransparency("#fff", 10)
+                  )}
                   border: 2px solid transparent;
                   border-bottom: 2px solid ${primaryColor};
                 }

@@ -73,10 +73,10 @@ const About = () => {
           `}
         >
           Hi there! I'm <b>William Jesus</b>, I'm a{" "}
-          <b>Senior Frontend Developer</b> and <b>UI/UX Developer</b> from Mexico. I
-          have more than 3 years of experience in the software industry, I have
-          worked with different technologies and I have participated in
-          different projects.
+          <b>Senior Frontend Developer</b> and <b>UI/UX Developer</b> from
+          Mexico. I have more than 3 years of experience in the software
+          industry, I have worked with different technologies and I have
+          participated in different projects.
           <br />
           <br />
           Thanks to my specialized training, I believe that I can add value and
@@ -419,6 +419,7 @@ const WORKS = [
   },
   {
     id: 1,
+    otherprojects: true,
     company: "Stackly Code",
     position: "Frontend Developer",
     date: "Feb 2020 - Feb 2021",
@@ -439,21 +440,8 @@ const WORKS = [
     ],
   },
   {
-    id: 2,
-    otherprojects: true,
-    company: "Comfeco",
-    position: "Frontend Developer",
-    date: "Ene 2021 - Feb 2021",
-    website: "Comfeco.com",
-    url: "https://comfeco.com/",
-    type: "Freelance",
-    technologies: ["HTML", "CSS", "JavaScript"],
-    points: [
-      "Help in the development and deployment of the COMFECO contest page and helping in the performance and SEO of the web",
-    ],
-  },
-  {
     id: 3,
+    otherprojects: true,
     company: "Fazt Community",
     position: "Frontend Developer",
     date: "Oct 2020 - Nov 2020",
@@ -463,35 +451,6 @@ const WORKS = [
     technologies: ["React", "NextJS", "Emotion", "Storybook", "TypeScript"],
     points: [
       "In Fazt Community I helped in the Design and development of the main landing being also participated in the development team as part of the project leader",
-    ],
-  },
-  {
-    id: 4,
-    otherprojects: true,
-    company: "Educando a Distacia",
-    position: "Frontend Developer",
-    date: "Ene 2020 - Feb 2020",
-    website: "EducandoaDistancia.com",
-    url: "https://educandoadistancia.com/",
-    type: "Freelance",
-    technologies: ["React", "NextJS", "Sass"],
-    points: [],
-  },
-  {
-    id: 5,
-    company: "C&M Corporation",
-    position: "Software Engineer",
-    date: "Ene 2017 - Nov 2019",
-    website: "C&M Corporation",
-    url: "https://www.cmcorporation.com/",
-    type: "Full Time (Presential)",
-    technologies: [
-      "C#",
-      "Visual Vasic",
-      "SQL Server",
-      "HTML",
-      "CSS",
-      "JavaScript",
     ],
   },
   {

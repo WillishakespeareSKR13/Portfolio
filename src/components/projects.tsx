@@ -6,10 +6,15 @@ import {
   ProjectAtom,
   ProjectImagesAtom,
 } from "@Src/jotai/projects";
-import { AtomButton, AtomText, AtomWrapper, css } from "@stacklycore/ui";
+import {
+  AtomButton,
+  AtomText,
+  AtomWrapper,
+  ChangeTransparency,
+  css,
+} from "@stacklycore/ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAtom, useAtomValue } from "jotai";
-import { useEffect } from "react";
 
 const Projects = () => {
   const primaryColor = useAtomValue(PrimaryColorAtom);
@@ -17,7 +22,7 @@ const Projects = () => {
   const [project, setProject] = useAtom(ProjectAtom);
   const [projectImages, setProjectImages] = useAtom(ProjectImagesAtom);
 
-  const { setTimer } = useTimer({
+  const { setTimer, timer } = useTimer({
     key: "PROJECT",
     end: 30,
     callback: () => {
@@ -28,7 +33,7 @@ const Projects = () => {
     },
   });
 
-  const { setTimer: setTimerImages } = useTimer({
+  const { setTimer: setTimerImages, timer: timerImages } = useTimer({
     key: "IMAGES",
     end: 8,
     callback: () => {
@@ -96,16 +101,59 @@ const Projects = () => {
           </b>
         </AtomText>
       </AtomWrapper>
+
       <AtomWrapper
         css={() => css`
-          padding: 40px 0px;
+          width: 100%;
+          max-width: 1440px;
+          padding: 20px 90px;
           align-items: center;
           justify-content: center;
           background-color: #000000c0;
           backdrop-filter: blur(2px);
           gap: 20px;
+          hr {
+            filter: blur(1px);
+            opacity: 0.3;
+            width: 100%;
+            height: 1px;
+            background-color: transparent;
+            border: 1px solid ${primaryColor};
+            transition: all 0.3s ease-in-out;
+          }
+          transition: all 0.3s ease-in-out;
         `}
       >
+        <hr />
+        <AtomWrapper
+          css={() => css`
+            background-color: transparent;
+          `}
+        >
+          <AtomText
+            css={() => css`
+              font-size: 30px;
+              font-weight: 600;
+            `}
+          >
+            {project?.project?.title}
+          </AtomText>
+          <AtomText
+            css={() => css`
+              font-size: 12px;
+              margin-bottom: 2px;
+            `}
+          >
+            {project?.project?.technologies.join(", ")}
+          </AtomText>
+          <AtomText
+            css={() => css`
+              font-size: 14px;
+            `}
+          >
+            {project?.project?.description}
+          </AtomText>
+        </AtomWrapper>
         <AtomWrapper
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -127,10 +175,26 @@ const Projects = () => {
             align-items: center;
             justify-content: center;
             flex-direction: row;
+            background-color: transparent;
+            gap: 40px;
+            height: calc(80vw * 0.4);
             img {
               object-fit: cover;
-              width: 80vw;
-              height: calc(80vw * 0.4);
+              width: 70vw;
+              height: 100%;
+              border-radius: 4px;
+              border: 2px solid #00000000;
+              box-shadow: 0px 0px 20px 0px #000000c0;
+              border: 2px solid ${ChangeTransparency(primaryColor, 40)};
+              box-shadow: 0px 0px 20px 0px
+                ${ChangeTransparency(primaryColor, 20)};
+              transition: box-shadow 0.3s ease-in-out;
+            }
+            img:nth-of-type(2) {
+              border: 2px solid ${primaryColor};
+              box-shadow: 0px 0px 20px 0px
+                ${ChangeTransparency(primaryColor, 50)};
+              opacity: 1 !important;
             }
           `}
         >
@@ -148,7 +212,7 @@ const Projects = () => {
                 exit="exit"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.3 },
+                  opacity: { duration: 0.2 },
                 }}
                 src={e?.image}
               />
@@ -196,42 +260,99 @@ const Projects = () => {
         </AtomWrapper>
         <AtomWrapper
           css={() => css`
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 70vw;
             max-width: 1440px;
-            padding: 0px 90px;
             z-index: 1;
-            background-color: transparent;
+            height: 2px;
+            border-radius: 10px;
+            background-color: #1a1a1ac0;
             gap: 10px;
+            filter: blur(1px);
+            ::before {
+              content: "";
+              border-radius: 10px;
+              background-color: ${primaryColor};
+              box-shadow: 0px 0px 5px 1px
+                ${ChangeTransparency(primaryColor, 50)};
+              height: 1px;
+              width: ${(timerImages?.timer * 100) / timerImages?.end}%;
+              transition: all 0.98s linear;
+            }
+          `}
+        />
+
+        <AtomWrapper
+          css={() => css`
+            flex-direction: row;
+            gap: 20px;
           `}
         >
-          <AtomWrapper>
-            <AtomText>{project?.project?.title}</AtomText>
-            <AtomText>{project?.project?.description}</AtomText>
-          </AtomWrapper>
-          <AtomWrapper
-            css={() => css`
-              flex-direction: row;
-              gap: 20px;
-            `}
-          >
-            {project?.projects?.map((e) => (
-              <AtomWrapper
-                key={e.id}
-                onHoverStart={() => {
-                  setProject(e.position);
-                  setTimer(() => 0);
-                  setTimerImages(() => 0);
-                }}
+          {project?.projects?.map((e) => (
+            <AtomWrapper
+              key={e.id}
+              onHoverStart={() => {
+                setProject(e.position);
+                setTimer(() => 0);
+                setTimerImages(() => 0);
+              }}
+              css={() => css`
+                justify-content: center;
+                align-items: center;
+                flex-basis: 200px;
+                flex-grow: 1;
+                height: 140px;
+                background-color: transparent;
+                border-radius: 4px;
+                border: 2px solid ${ChangeTransparency(primaryColor, 40)};
+                ${e.position === project.key &&
+                css`
+                  border: 2px solid ${primaryColor};
+                  background-color: ${ChangeTransparency(primaryColor, 20)};
+                  backdrop-filter: blur(10px);
+                  box-shadow: 0px 0px 20px 0px
+                    ${ChangeTransparency(primaryColor, 50)};
+                `}
+              `}
+            >
+              <AtomText
                 css={() => css`
-                  width: 200px;
-                  height: 200px;
-                  background-color: red;
+                  font-size: 18px;
                 `}
               >
-                <AtomText>{e.title}</AtomText>
-              </AtomWrapper>
-            ))}
-          </AtomWrapper>
+                {e.title}
+              </AtomText>
+            </AtomWrapper>
+          ))}
         </AtomWrapper>
+        <AtomWrapper
+          css={() => css`
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            z-index: 1;
+            height: 2px;
+            border-radius: 10px;
+            background-color: #1a1a1ac0;
+            gap: 10px;
+            filter: blur(1px);
+            ::before {
+              content: "";
+              border-radius: 10px;
+              background-color: ${primaryColor};
+              box-shadow: 0px 0px 5px 1px
+                ${ChangeTransparency(primaryColor, 50)};
+              height: 1px;
+              width: ${(timer?.timer * 100) / timer?.end}%;
+              transition: all 0.98s linear;
+            }
+          `}
+        />
       </AtomWrapper>
     </AtomWrapper>
   );
@@ -247,7 +368,7 @@ const swipePower = (offset: number, velocity: number) => {
 const variants = {
   enter: (direction: EnumDirection) => {
     return {
-      x: direction === "RIGHT" ? -100 : 100,
+      x: direction === "RIGHT" ? -200 : 200,
       filter: "blur(10px)",
       opacity: 0,
     };
@@ -256,13 +377,13 @@ const variants = {
     zIndex: 1,
     x: 0,
     filter: "blur(0px)",
-    opacity: 1,
+    opacity: 0.3,
   },
   exit: (direction: EnumDirection) => {
     return {
       zIndex: 0,
       filter: "blur(10px)",
-      x: direction === "RIGHT" ? 100 : -100,
+      x: direction === "RIGHT" ? 200 : -200,
       opacity: 0,
     };
   },

@@ -194,18 +194,26 @@ const Projects = () => {
               border: 2px solid ${primaryColor};
               box-shadow: 0px 0px 20px 0px
                 ${ChangeTransparency(primaryColor, 50)};
-              opacity: 1 !important;
             }
           `}
         >
           {projectImages?.sorted?.map((e) => (
-            <AnimatePresence mode="wait" custom={projectImages?.direction}>
+            <AnimatePresence
+              mode="wait"
+              custom={{
+                direction: projectImages?.direction,
+                isPrincipal: e?.position === projectImages?.sorted[1]?.position,
+              }}
+            >
               <motion.img
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.12}
                 key={e.id}
-                custom={projectImages?.direction}
+                custom={{
+                  direction: projectImages?.direction,
+                  isPrincipal: e?.position === projectImages?.sorted[1]?.position,
+                }}
                 variants={variants}
                 initial="enter"
                 animate="center"
@@ -365,25 +373,29 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
+type VariantsProps = {
+  direction: EnumDirection;
+  isPrincipal: boolean;
+};
 const variants = {
-  enter: (direction: EnumDirection) => {
+  enter: (props: VariantsProps) => {
     return {
-      x: direction === "RIGHT" ? -200 : 200,
+      x: props?.direction === "RIGHT" ? -200 : 200,
       filter: "blur(10px)",
       opacity: 0,
     };
   },
-  center: {
+  center: (props: VariantsProps) => ({
     zIndex: 1,
     x: 0,
     filter: "blur(0px)",
-    opacity: 0.3,
-  },
-  exit: (direction: EnumDirection) => {
+    opacity: props.isPrincipal ? 1 : 0.3,
+  }),
+  exit: (props: VariantsProps) => {
     return {
       zIndex: 0,
       filter: "blur(10px)",
-      x: direction === "RIGHT" ? 200 : -200,
+      x: props?.direction === "RIGHT" ? 200 : -200,
       opacity: 0,
     };
   },

@@ -27,7 +27,8 @@ const Hero = () => {
         justify-content: center;
         align-items: center;
         flex-direction: row;
-        height: 100vh;
+        height: max-content;
+        min-height: 100vh;
       `}
     >
       <AtomWrapper

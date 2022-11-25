@@ -24,7 +24,7 @@ const Projects = () => {
 
   const { setTimer, timer } = useTimer({
     key: "PROJECT",
-    end: 30,
+    end: 40,
     callback: () => {
       setProject(
         project?.key >= project?.projects.length - 1 ? 0 : project?.key + 1
@@ -35,7 +35,7 @@ const Projects = () => {
 
   const { setTimer: setTimerImages, timer: timerImages } = useTimer({
     key: "IMAGES",
-    end: 8,
+    end: 12,
     callback: () => {
       setProjectImages("LEFT");
       setTimerImages(() => 0);
@@ -49,7 +49,8 @@ const Projects = () => {
         justify-content: flex-start;
         align-items: center;
         flex-direction: column;
-        height: 100vh;
+        height: max-content;
+        min-height: 100vh;
         background-color: #000000c0;
         backdrop-filter: blur(2px);
       `}
@@ -140,7 +141,7 @@ const Projects = () => {
           </AtomText>
           <AtomText
             css={() => css`
-              font-size: 12px;
+              font-size: 14px;
               margin-bottom: 2px;
             `}
           >
@@ -148,7 +149,7 @@ const Projects = () => {
           </AtomText>
           <AtomText
             css={() => css`
-              font-size: 14px;
+              font-size: 16px;
             `}
           >
             {project?.project?.description}
@@ -178,6 +179,7 @@ const Projects = () => {
             background-color: transparent;
             gap: 40px;
             height: calc(80vw * 0.4);
+            max-height: 400px;
             img {
               object-fit: cover;
               width: 70vw;
@@ -212,7 +214,8 @@ const Projects = () => {
                 key={e.id}
                 custom={{
                   direction: projectImages?.direction,
-                  isPrincipal: e?.position === projectImages?.sorted[1]?.position,
+                  isPrincipal:
+                    e?.position === projectImages?.sorted[1]?.position,
                 }}
                 variants={variants}
                 initial="enter"

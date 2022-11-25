@@ -29,6 +29,7 @@ const About = () => {
         align-items: center;
         flex-direction: row;
         height: max-content;
+        min-height: 100vh;
         background-color: #000000c0;
         backdrop-filter: blur(2px);
         padding-bottom: 80px;

@@ -8,6 +8,7 @@ import {
 } from "@Src/jotai/projects";
 import {
   AtomButton,
+  AtomLink,
   AtomText,
   AtomWrapper,
   ChangeTransparency,
@@ -15,6 +16,8 @@ import {
 } from "@stacklycore/ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAtom, useAtomValue } from "jotai";
+import GithubIcon from "@Src/assets/git.svg";
+import WebIcon from "@Src/assets/web.svg";
 
 const Projects = () => {
   const primaryColor = useAtomValue(PrimaryColorAtom);
@@ -154,6 +157,27 @@ const Projects = () => {
           >
             {project?.project?.description}
           </AtomText>
+          <AtomWrapper
+            css={() => css`
+              padding: 10px 0px;
+              flex-direction: row;
+              gap: 15px;
+              a {
+                cursor: pointer;
+                svg {
+                  width: 22px;
+                  height: 22px;
+                }
+              }
+            `}
+          >
+            <AtomLink href={project?.project?.github} target="_blank">
+              <GithubIcon />
+            </AtomLink>
+            <AtomLink href={project?.project?.link} target="_blank">
+              <WebIcon />
+            </AtomLink>
+          </AtomWrapper>
         </AtomWrapper>
         <AtomWrapper
           drag="x"
@@ -178,8 +202,7 @@ const Projects = () => {
             flex-direction: row;
             background-color: transparent;
             gap: 40px;
-            height: calc(80vw * 0.4);
-            max-height: 400px;
+            height: calc(100vh * 0.45);
             img {
               object-fit: cover;
               width: 70vw;
@@ -223,7 +246,7 @@ const Projects = () => {
                 exit="exit"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 },
+                  opacity: { duration: 0.14 },
                 }}
                 src={e?.image}
               />
@@ -299,6 +322,7 @@ const Projects = () => {
         <AtomWrapper
           css={() => css`
             flex-direction: row;
+            flex-wrap: wrap;
             gap: 20px;
           `}
         >
@@ -313,7 +337,7 @@ const Projects = () => {
               css={() => css`
                 justify-content: center;
                 align-items: center;
-                flex-basis: 200px;
+                flex-basis: 150px;
                 flex-grow: 1;
                 height: 140px;
                 background-color: transparent;

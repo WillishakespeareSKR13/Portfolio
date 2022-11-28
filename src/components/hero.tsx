@@ -156,7 +156,7 @@ const Hero = () => {
             top: 0;
             left: 0;
             width: 2px;
-            height: 400vh;
+            height: 300vh;
             background: ${primaryColor};
             box-shadow: 0px 0 8px ${primaryColor};
             z-index: 1;

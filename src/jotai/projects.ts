@@ -50,6 +50,38 @@ export const ProjectsAtom = atom([
     link: "https://stackly-ui.vercel.app/",
     github: "https://github.com/StacklyCode/StacklyUI",
   },
+  {
+    id: "4",
+    title: "Stackly UI 4",
+    description: "A UI library for ReactJS",
+    image:
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
+    images: [
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap2.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap3.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap4.png",
+    ],
+    technologies: ["ReactJS", "Typescript", "Styled Components"],
+    link: "https://stackly-ui.vercel.app/",
+    github: "https://github.com/StacklyCode/StacklyUI",
+  },
+  {
+    id: "5",
+    title: "Stackly UI 5",
+    description: "A UI library for ReactJS",
+    image:
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
+    images: [
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap2.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap3.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap4.png",
+    ],
+    technologies: ["ReactJS", "Typescript", "Styled Components"],
+    link: "https://stackly-ui.vercel.app/",
+    github: "https://github.com/StacklyCode/StacklyUI",
+  },
 ]);
 
 export const ProjectKeyAtom = atom(0);

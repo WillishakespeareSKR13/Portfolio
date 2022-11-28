@@ -47,7 +47,7 @@ const LabelsWithRefAtom = atom((get) =>
 
 const SelectAtom = atom("HERO");
 
-const Urls = [
+export const Urls = [
   {
     icon: <FB />,
     url: "https://www.facebook.com/willishakespeare13/",
@@ -196,7 +196,14 @@ const Navigation = () => {
             </AtomButton>
           ))}
         </AtomWrapper>
-        <Logo />
+        <AtomWrapper
+          css={() => css`
+            width: 180px;
+            background-color: transparent;
+          `}
+        >
+          <Logo />
+        </AtomWrapper>
         <AtomWrapper
           css={() => css`
             flex-direction: row;
@@ -211,6 +218,10 @@ const Navigation = () => {
               href={url}
               css={() => css`
                 cursor: pointer;
+                background-color: transparent;
+                svg {
+                  height: 18px;
+                }
               `}
               target="_blank"
             >

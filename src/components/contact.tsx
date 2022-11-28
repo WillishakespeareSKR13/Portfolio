@@ -9,18 +9,52 @@ import {
 } from "@stacklycore/ui";
 import useRefJotai from "@Src/hooks/useRefJotai";
 import { useAtomValue } from "jotai";
-import { SelectAtom } from "@Src/jotai/labels";
 import { PrimaryColorAtom } from "@Src/jotai/primaryColor";
 import Logo from "@Assets/logo.svg";
+import * as Yup from "yup";
 
 import { Urls } from "./navigation";
 import { motion } from "framer-motion";
 import { ButtonFlatCSS } from "@Src/css/button";
+import { useState } from "react";
+import { useFormik } from "formik";
 
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
   const primaryColor = useAtomValue(PrimaryColorAtom);
-  const select = useAtomValue(SelectAtom);
-  const { ref, refs } = useRefJotai("CONTACT");
+  const { ref } = useRefJotai("CONTACT");
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Insert your name"),
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Insert your email"),
+      subject: Yup.string().required("Insert a subject"),
+      message: Yup.string().required("Insert a message"),
+    }),
+    onSubmit: async (values) => {
+      setLoading(true);
+      console.log(values);
+      const fetchMail = await fetch("/api/mail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      await fetchMail.json();
+      setLoading(false);
+      formik.resetForm();
+      alert("Message sent!");
+    },
+  });
 
   return (
     <AtomWrapper
@@ -93,8 +127,13 @@ const Contact = () => {
           ))}
         </AtomWrapper>
         <AtomWrapper
+          as="form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            formik.handleSubmit();
+          }}
           css={(theme) => css`
-            gap: 20px;
+            gap: 10px;
             label {
               width: 100%;
               input {
@@ -103,6 +142,9 @@ const Contact = () => {
                   theme?.input?.properties?.background ?? "#ffffff",
                   primaryColor
                 )}
+              }
+              span:nth-child(3) {
+                height: max-content;
               }
             }
             .textarea {
@@ -117,6 +159,11 @@ const Contact = () => {
                 font-size: 12px;
                 font-weight: 600;
                 color: ${theme.input?.properties?.label ?? "#222222"};
+              }
+              span:nth-child(3) {
+                height: max-content;
+                font-size: 10px;
+                color: #ff0000;
               }
               textarea {
                 font-family: "Inter", sans-serif;
@@ -142,15 +189,32 @@ const Contact = () => {
               flex-direction: row;
             `}
           >
-            <AtomInput labeltext="Name" />
-            <AtomInput labeltext="Subject" />
+            <AtomInput labeltext="Name" id="name" formik={formik} />
+            <AtomInput labeltext="Subject" id="subject" formik={formik} />
           </AtomWrapper>
-          <AtomInput labeltext="Email" />
+          <AtomInput
+            labeltext="Email"
+            id="email"
+            formik={formik}
+            error={{
+              id: "email",
+            }}
+          />
           <motion.label className="textarea">
             <motion.span>Type your message here</motion.span>
-            <motion.textarea />
+            <motion.textarea
+              id="message"
+              {...formik.getFieldProps("message")}
+            />
+            <motion.span>
+              {formik.touched.message && formik.errors.message
+                ? formik.errors.message
+                : ""}
+            </motion.span>
           </motion.label>
           <AtomButton
+            loading={loading}
+            type="submit"
             css={() => css`
               ${ButtonFlatCSS(primaryColor)}
               padding: 8px 30px;
@@ -161,7 +225,7 @@ const Contact = () => {
         </AtomWrapper>
         <AtomWrapper
           css={() => css`
-            padding: 20px 0px 10px 0px;
+            padding: 0px 0px 20px 0px;
             flex-direction: row;
             justify-content: center;
             align-items: center;

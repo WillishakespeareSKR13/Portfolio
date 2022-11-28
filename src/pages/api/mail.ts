@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const msg = {
     to: "skr13@outlook.com",
-    from: "porfolio@willskr.me",
+    from: "porfolio@willskr.com",
     subject: `${subject}`,
     text: `${message}`,
     html: html,

@@ -21,8 +21,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: yarn build
-      - run: pm2 delete portfolio-main
-      - run: rm -rf ~/runers/Stackly/projects/Portfolio/main/
-      - run: cp -r ~/runers/Stackly/projects/Portfolio/Portfolio/ ~/runers/Stackly/projects/Portfolio/main/
-      - run: cd ~/runers/Stackly/projects/Portfolio/main/
-      - run: pm2 start --name portfolio-main yarn -- start --port 3000
+      - run: pm2 delete willishakespeare-portfolio-main
+      - run: rm -rf ~/runers/Willishakespeare/projects/Portfolio/main/
+      - run: cp -r ~/runers/Willishakespeare/projects/Portfolio/Portfolio/ ~/runers/Willishakespeare/projects/Portfolio/main/
+      - run: cd ~/runers/Willishakespeare/projects/Portfolio/main/
+      - run: pm2 start --name willishakespeare-portfolio-main yarn -- start --port 3100

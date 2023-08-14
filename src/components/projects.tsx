@@ -11,6 +11,7 @@ import {
   AtomLink,
   AtomText,
   AtomWrapper,
+  ChangeBrightness,
   ChangeTransparency,
   css,
 } from "@stacklycore/ui";
@@ -171,9 +172,13 @@ const Projects = () => {
               }
             `}
           >
-            <AtomLink href={project?.project?.github} target="_blank">
-              <GithubIcon />
-            </AtomLink>
+            {project?.project?.github === "PRIVATE" ? (
+              <></>
+            ) : (
+              <AtomLink href={project?.project?.github} target="_blank">
+                <GithubIcon />
+              </AtomLink>
+            )}
             <AtomLink href={project?.project?.link} target="_blank">
               <WebIcon />
             </AtomLink>
@@ -207,18 +212,13 @@ const Projects = () => {
               object-fit: cover;
               width: 70vw;
               height: 100%;
-              border-radius: 4px;
-              border: 2px solid #00000000;
-              box-shadow: 0px 0px 20px 0px #000000c0;
-              border: 2px solid ${ChangeTransparency(primaryColor, 40)};
-              box-shadow: 0px 0px 20px 0px
-                ${ChangeTransparency(primaryColor, 20)};
+              border: 1px solid ${ChangeTransparency(primaryColor, 40)};
               transition: box-shadow 0.3s ease-in-out;
+              object-position: center center;
+              object-fit: cover;
             }
             img:nth-of-type(2) {
-              border: 2px solid ${primaryColor};
-              box-shadow: 0px 0px 20px 0px
-                ${ChangeTransparency(primaryColor, 50)};
+              border: 1px solid ${primaryColor};
             }
           `}
         >
@@ -305,13 +305,10 @@ const Projects = () => {
             border-radius: 10px;
             background-color: #1a1a1ac0;
             gap: 10px;
-            filter: blur(1px);
             ::before {
               content: "";
               border-radius: 10px;
               background-color: ${primaryColor};
-              box-shadow: 0px 0px 5px 1px
-                ${ChangeTransparency(primaryColor, 50)};
               height: 1px;
               width: ${(timerImages?.timer * 100) / timerImages?.end}%;
               transition: all 0.98s linear;
@@ -341,25 +338,45 @@ const Projects = () => {
                 flex-grow: 1;
                 height: 140px;
                 background-color: transparent;
-                border-radius: 4px;
-                border: 2px solid ${ChangeTransparency(primaryColor, 40)};
-                ${e.position === project.key &&
-                css`
-                  border: 2px solid ${primaryColor};
-                  background-color: ${ChangeTransparency(primaryColor, 20)};
-                  backdrop-filter: blur(10px);
-                  box-shadow: 0px 0px 20px 0px
-                    ${ChangeTransparency(primaryColor, 50)};
-                `}
+                cursor: pointer;
+                background-image: url(${e.image});
+                background-size: cover;
+                background-position: center center;
+                transition: all 0.3s ease-in-out;
               `}
             >
-              <AtomText
+              <AtomWrapper
                 css={() => css`
-                  font-size: 18px;
+                  background-color: #0000006e;
+                  width: 100%;
+                  height: 100%;
+                  justify-content: center;
+                  align-items: center;
+                  backdrop-filter: blur(2px);
+                  border: 1px solid ${ChangeTransparency(primaryColor, 40)};
+                  ${e.position === project.key &&
+                  css`
+                    border: 1px solid ${primaryColor};
+                    background-color: ${ChangeTransparency(
+                      ChangeBrightness(primaryColor, -200),
+                      60
+                    )};
+                  `}
                 `}
               >
-                {e.title}
-              </AtomText>
+                <AtomText
+                  css={() => css`
+                    font-size: 18px;
+                    font-weight: 600;
+                    ${e.position === project.key &&
+                    css`
+                      color: ${primaryColor};
+                    `}
+                  `}
+                >
+                  {e.title}
+                </AtomText>
+              </AtomWrapper>
             </AtomWrapper>
           ))}
         </AtomWrapper>
@@ -375,13 +392,11 @@ const Projects = () => {
             border-radius: 10px;
             background-color: #1a1a1ac0;
             gap: 10px;
-            filter: blur(1px);
             ::before {
               content: "";
               border-radius: 10px;
               background-color: ${primaryColor};
-              box-shadow: 0px 0px 5px 1px
-                ${ChangeTransparency(primaryColor, 50)};
+
               height: 1px;
               width: ${(timer?.timer * 100) / timer?.end}%;
               transition: all 0.98s linear;

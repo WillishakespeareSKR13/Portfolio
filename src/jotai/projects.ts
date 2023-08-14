@@ -25,6 +25,7 @@ export const ProjectsAtom = atom([
     image:
       "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/tfv/1.png",
     images: [
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/tfv/1.png",
       "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/tfv/2.png",
       "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/tfv/3.png",
       "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/tfv/4.png",
@@ -37,51 +38,54 @@ export const ProjectsAtom = atom([
 
   {
     id: "3",
-    title: "Stackly UI 3",
-    description: "A UI library for ReactJS",
+    title: "Portfolio",
+    description: "My personal portfolio",
     image:
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/porfolio/1.png",
     images: [
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap2.png",
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap3.png",
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap4.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/porfolio/1.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/porfolio/2.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/porfolio/3.png",
     ],
     technologies: ["ReactJS", "Typescript", "Styled Components"],
-    link: "https://stackly-ui.vercel.app/",
-    github: "https://github.com/StacklyCode/StacklyUI",
+    link: "https://www.willskr.com/",
+    github: "https://github.com/WillishakespeareSKR13/Portfolio",
   },
   {
     id: "4",
-    title: "Stackly UI 4",
-    description: "A UI library for ReactJS",
+    title: "PixiFun",
+    description: "Lego Image Converter and Dashboard",
     image:
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/pixifun/1.png",
     images: [
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap2.png",
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap3.png",
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap4.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/pixifun/1.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/pixifun/2.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/pixifun/3.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/pixifun/4.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/pixifun/5.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/pixifun/6.png",
     ],
     technologies: ["ReactJS", "Typescript", "Styled Components"],
-    link: "https://stackly-ui.vercel.app/",
-    github: "https://github.com/StacklyCode/StacklyUI",
+    link: "https://admin.pixifun.com/",
+    github: "PRIVATE",
   },
   {
     id: "5",
-    title: "Stackly UI 5",
-    description: "A UI library for ReactJS",
+    title: "IPhone 11",
+    description: "IPhone 11 Website Clone",
     image:
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/iphone11/1.png",
     images: [
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap1.png",
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap2.png",
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap3.png",
-      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/Stackly_UI/cap4.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/iphone11/1.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/iphone11/2.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/iphone11/3.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/iphone11/4.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/iphone11/5.png",
+      "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/iphone11/6.png",
     ],
     technologies: ["ReactJS", "Typescript", "Styled Components"],
-    link: "https://stackly-ui.vercel.app/",
-    github: "https://github.com/StacklyCode/StacklyUI",
+    link: "https://iphone11-nine.vercel.app/",
+    github: "https://github.com/WillishakespeareSKR13/iphone11",
   },
 ]);
 
@@ -138,7 +142,7 @@ export const ProjectImagesAtom = atom(
     const imagesToShow = [
       imagesSorted[imagesSorted.length - 1],
       ...imagesSorted.slice(0, 2),
-    ];
+    ].filter((e) => e);
     return {
       direction: get(ProjectImagesDirectionAtom),
       images: images,

@@ -11,6 +11,7 @@ import {
   AtomLink,
   AtomText,
   AtomWrapper,
+  ChangeBrightness,
   ChangeTransparency,
   css,
 } from "@stacklycore/ui";
@@ -213,7 +214,7 @@ const Projects = () => {
               height: 100%;
               border: 1px solid ${ChangeTransparency(primaryColor, 40)};
               transition: box-shadow 0.3s ease-in-out;
-              object-position: top center;
+              object-position: center center;
               object-fit: cover;
             }
             img:nth-of-type(2) {
@@ -338,21 +339,44 @@ const Projects = () => {
                 height: 140px;
                 background-color: transparent;
                 cursor: pointer;
-                border: 1px solid ${ChangeTransparency(primaryColor, 40)};
-                ${e.position === project.key &&
-                css`
-                  border: 1px solid ${primaryColor};
-                  background-color: ${ChangeTransparency(primaryColor, 20)};
-                `}
+                background-image: url(${e.image});
+                background-size: cover;
+                background-position: center center;
+                transition: all 0.3s ease-in-out;
               `}
             >
-              <AtomText
+              <AtomWrapper
                 css={() => css`
-                  font-size: 18px;
+                  background-color: #0000006e;
+                  width: 100%;
+                  height: 100%;
+                  justify-content: center;
+                  align-items: center;
+                  backdrop-filter: blur(2px);
+                  border: 1px solid ${ChangeTransparency(primaryColor, 40)};
+                  ${e.position === project.key &&
+                  css`
+                    border: 1px solid ${primaryColor};
+                    background-color: ${ChangeTransparency(
+                      ChangeBrightness(primaryColor, -200),
+                      60
+                    )};
+                  `}
                 `}
               >
-                {e.title}
-              </AtomText>
+                <AtomText
+                  css={() => css`
+                    font-size: 18px;
+                    font-weight: 600;
+                    ${e.position === project.key &&
+                    css`
+                      color: ${primaryColor};
+                    `}
+                  `}
+                >
+                  {e.title}
+                </AtomText>
+              </AtomWrapper>
             </AtomWrapper>
           ))}
         </AtomWrapper>

@@ -15,7 +15,8 @@ import NextJSIcon from "@Src/assets/icons/nextjs.svg";
 import JavaScriptIcon from "@Src/assets/icons/javascript.svg";
 import TypeScriptIcon from "@Src/assets/icons/typescript.svg";
 import GraphQLIcon from "@Src/assets/icons/graphql.svg";
-import { ButtonFlatCSS } from "@Src/css/button";
+
+const initYear = 2016;
 
 const About = () => {
   const primaryColor = useAtomValue(PrimaryColorAtom);
@@ -75,9 +76,9 @@ const About = () => {
         >
           Hi there! I'm <b>William Jesus</b>, I'm a{" "}
           <b>Senior Frontend Developer</b> and <b>UI/UX Developer</b> from
-          Mexico. I have more than 3 years of experience in the software
-          industry, I have worked with different technologies and I have
-          participated in different projects.
+          Mexico. I have more than {new Date().getFullYear() - initYear} years
+          of experience in the software industry, I have worked with different
+          technologies and I have participated in different projects.
           <br />
           <br />
           Thanks to my specialized training, I believe that I can add value and
@@ -387,10 +388,30 @@ export default About;
 
 const WORKS = [
   {
+    id: -1,
+    company: "Gentera",
+    position: "Senior Javascript Developer",
+    date: "Feb 2021 - Present",
+    website: "Gentera.com.mx",
+    url: "https://www.gentera.com.mx/",
+    type: "Full Time (Hybrid)",
+    otherprojects: false,
+    technologies: ["React", "React Native", "TypeScript", "Jest", "Cypress"],
+    points: [
+      "<b>Senior Javascript Developer</b>",
+      "built the architecture and schema bases for a react native application for the <b>financial</b> sector",
+      "Take decisions in architecture and development",
+      "Creation Infrastructure to frontend <b>(Graphs infrastructure)</b> based on (Atomic Design & Hexagonal infrastructure)",
+      "Creation and Implementation of UI Library <b>(Rollup & Tree Shaking)</b>",
+      "Creation and Implementation of Functions as services in Front",
+      "Implementation of <b>Jest</b> and <b>Cypress</b>",
+    ],
+  },
+  {
     id: 0,
     company: "Ixulabs",
     position: "Team Leader",
-    date: "Mar 2021 - Present",
+    date: "Mar 2021 - Ene 2023",
     website: "Ixulabs.com",
     url: "https://ixulabs.com/",
     type: "Full Time (Remote)",

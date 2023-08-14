@@ -103,15 +103,17 @@ const Navigation = () => {
         border-bottom: 1px solid
           ${ChangeBrightness(theme?.header?.properties?.background, 20)};
 
-        ::before {
+        ::after {
           content: "";
-          filter: blur(1px);
+          position: absolute;
+          top: 0px;
           border-radius: 10px;
           background-color: ${primaryColor};
-          box-shadow: 0px 0px 5px 1px ${ChangeTransparency(primaryColor, 80)};
-          height: 1px;
+          height: 2px;
+          width: 50%;
           width: ${(timer?.timer * 100) / timer?.end}%;
           transition: all 0.98s linear;
+          z-index: 9999;
         }
       `}
     >
@@ -122,20 +124,34 @@ const Navigation = () => {
           padding: 0px 90px 0px 90px;
           justify-content: space-between;
           align-items: center;
-          height: 80px;
+          height: max-content;
           background-color: transparent;
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0);
 
           transition: all 0.3s ease-in-out;
+          display: grid;
+          grid-template-columns: 280px 180px 280px;
+          gap: 20px;
+          @media (max-width: 1024px) {
+            display: flex;
+            flex-direction: column-reverse;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            padding: 15px 0px 0px 0px;
+          }
         `}
       >
         <AtomWrapper
           css={() => css`
             flex-direction: row;
-            width: max-content;
             background-color: transparent;
             height: 100%;
             gap: 10px;
+            width: 100%;
+            @media (max-width: 1024px) {
+              justify-content: center;
+              align-items: center;
+            }
           `}
         >
           {labelWithRef.map(({ key, ref, label }) => (
@@ -152,25 +168,14 @@ const Navigation = () => {
                 transition: all 0.2s ease;
                 position: relative;
                 background-color: transparent;
-                padding: 0px 30px;
+                padding: 0px 10px;
                 height: 100%;
+                height: 65px;
                 font-size: 12px;
                 border-radius: 0px;
-                border: 2px solid transparent;
+                border: 1px solid transparent;
                 border-bottom: 2px solid transparent;
 
-                :after {
-                  content: "";
-                  position: absolute;
-                  bottom: -4px;
-                  left: 0px;
-                  width: 100%;
-                  height: 2px;
-                  background-color: ${primaryColor};
-                  filter: blur(4px);
-                  box-shadow: 0px 2px 10px 0px ${primaryColor};
-                  opacity: 0;
-                }
                 :hover {
                   :after {
                     opacity: 1;
@@ -179,7 +184,7 @@ const Navigation = () => {
                     ChangeTransparency(primaryColor, 10) ??
                       ChangeTransparency("#fff", 10)
                   )}
-                  border: 2px solid transparent;
+                  border: 1px solid transparent;
                   border-bottom: 2px solid ${primaryColor};
                 }
 
@@ -198,7 +203,11 @@ const Navigation = () => {
         </AtomWrapper>
         <AtomWrapper
           css={() => css`
-            width: 180px;
+            width: 100%;
+            height: 30px;
+            justify-self: center;
+            justify-content: center;
+            align-items: center;
             background-color: transparent;
           `}
         >
@@ -211,6 +220,12 @@ const Navigation = () => {
             background-color: transparent;
             gap: 40px;
             padding: 0px 40px;
+            width: 100%;
+            justify-content: flex-end;
+            @media (max-width: 1024px) {
+              justify-content: center;
+              align-items: center;
+            }
           `}
         >
           {Urls.map(({ icon, url }) => (

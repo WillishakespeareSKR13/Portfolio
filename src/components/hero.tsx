@@ -150,18 +150,8 @@ const Hero = () => {
           transform: skew(-30deg, 0deg);
           background: ${ChangeBrightness(primaryColor, -50)};
           transition: all 0.3s ease-in-out;
-          :before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 2px;
-            height: 300vh;
-            background: ${primaryColor};
-            box-shadow: 0px 0 8px ${primaryColor};
-            z-index: 1;
-            transition: all 0.3s ease-in-out;
-          }
+          border-left: 1px solid ${primaryColor};
+
           :after {
             position: absolute;
             content: "";

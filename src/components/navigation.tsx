@@ -54,7 +54,7 @@ export const Urls = [
   },
   {
     icon: <Linkedin />,
-    url: "https://www.linkedin.com/in/william-jesus-covarrubias-ramos-84410339/",
+    url: "https://www.linkedin.com/in/willskr/",
   },
   {
     icon: <Github />,

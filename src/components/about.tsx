@@ -74,21 +74,25 @@ const About = () => {
             transition: all 0.3s ease-in-out;
           `}
         >
-          Hi there! I'm <b>William Jesus</b>, I'm a{" "}
-          <b>Senior Frontend Developer</b> and <b>UI/UX Developer</b> from
-          Mexico. I have more than {new Date().getFullYear() - initYear} years
-          of experience in the software industry, I have worked with different
-          technologies and I have participated in different projects.
+          Greetings! <b>I'm William Jesus</b>, a Senior Frontend Developer and
+          <b> UI/UX</b> Designer hailing from the vibrant tech scene of Mexico.
+          With over seven years of unwavering commitment to the software
+          industry, I've not just honed my skills, but I've also embraced a
+          journey of continuous learning and growth.
           <br />
           <br />
-          Thanks to my specialized training, I believe that I can add value and
-          continue to develop <b>professionally</b> in a company that matches my
-          values ​​and expectations.
+          My journey through the ever-evolving landscape of technology has been
+          nothing short of <b>exhilarating.</b> From the thrill of mastering
+          diverse technologies to the satisfaction of contributing to a
+          multitude of <b>projects,</b> each experience has added a unique
+          brushstroke to my professional canvas.
           <br />
-          <br />I would love to be part of a work <b>team</b> in which I can
-          apply all my knowledge and, at the same time, allow me to develop
-          professionally in which I can express myself creatively helping in
-          large projects.
+          <br />
+          But there's something more profound that fuels my{" "}
+          <b>passion—a deep-seated</b> belief that the right team and company
+          can elevate not just my work, but my very soul. I'm on the lookout for
+          a new adventure, a place where my <b>skills</b> harmonize with the
+          values and aspirations of a like-minded collective.
         </AtomText>
         <AtomText
           css={() => css`
@@ -113,7 +117,6 @@ const About = () => {
               font-size: 16px;
               :hover {
                 cursor: pointer;
-                color: ${ChangeTransparency(primaryColor, 50)};
               }
             `}
           >
@@ -350,30 +353,48 @@ const About = () => {
                     align-items: center;
                     background-color: transparent;
                     gap: 20px;
-                    hr {
-                      filter: blur(1px);
-                      opacity: 0.3;
-                      flex: 1;
-                      height: 1px;
-                      background-color: transparent;
-                      border: 1px solid ${primaryColor};
-                      transition: all 0.3s ease-in-out;
-                    }
+
                     transition: all 0.3s ease-in-out;
                   `}
                 >
-                  <hr />
+                  <AtomWrapper
+                    css={() => css`
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: center;
+                      align-items: center;
+                      width: 100%;
+                      z-index: 1;
+                      height: 1px;
+                      border-radius: 10px;
+                      background-color: ${primaryColor};
+                      gap: 10px;
+                    `}
+                  />
                   <AtomText
                     css={() => css`
-                      opacity: 0.3;
                       text-align: center;
                       color: ${primaryColor};
                       transition: all 0.3s ease-in-out;
+                      white-space: nowrap;
                     `}
                   >
                     some other freelance jobs or projects between dates
                   </AtomText>
-                  <hr />
+                  <AtomWrapper
+                    css={() => css`
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: center;
+                      align-items: center;
+                      width: 100%;
+                      z-index: 1;
+                      height: 1px;
+                      border-radius: 10px;
+                      background-color: ${primaryColor};
+                      gap: 10px;
+                    `}
+                  />
                 </AtomWrapper>
               )}
             </>
@@ -391,7 +412,7 @@ const WORKS = [
     id: -1,
     company: "Gentera",
     position: "Senior Javascript Developer",
-    date: "Feb 2021 - Present",
+    date: "Feb 2023 - Sep 2023",
     website: "Gentera.com.mx",
     url: "https://www.gentera.com.mx/",
     type: "Full Time (Hybrid)",

@@ -52,7 +52,7 @@ const Contact = () => {
       await fetchMail.json();
       setLoading(false);
       formik.resetForm();
-      alert("Message sent!");
+      // alert("Message sent!");
     },
   });
 

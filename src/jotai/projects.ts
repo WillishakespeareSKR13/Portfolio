@@ -32,7 +32,7 @@ export const ProjectsAtom = atom([
       "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/tfv/5.png",
     ],
     technologies: ["ReactJS", "Typescript", "Stackly UI"],
-    link: "https://tfv-client.vercel.app/",
+    link: "https://www.thefilmsvault.com/",
     github: "PRIVATE",
   },
 
@@ -66,7 +66,7 @@ export const ProjectsAtom = atom([
       "https://storage.googleapis.com/stackly-assets/porfolio-willishakespeare/img/pixifun/6.png",
     ],
     technologies: ["ReactJS", "Typescript", "Styled Components"],
-    link: "https://admin.pixifun.com/",
+    link: "https://admin.pixitfun.com/",
     github: "PRIVATE",
   },
   {

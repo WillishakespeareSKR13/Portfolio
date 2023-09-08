@@ -26,26 +26,6 @@ const Projects = () => {
   const [project, setProject] = useAtom(ProjectAtom);
   const [projectImages, setProjectImages] = useAtom(ProjectImagesAtom);
 
-  const { setTimer, timer } = useTimer({
-    key: "PROJECT",
-    end: 40,
-    callback: () => {
-      setProject(
-        project?.key >= project?.projects.length - 1 ? 0 : project?.key + 1
-      );
-      setTimer(() => 0);
-    },
-  });
-
-  const { setTimer: setTimerImages, timer: timerImages } = useTimer({
-    key: "IMAGES",
-    end: 12,
-    callback: () => {
-      setProjectImages("LEFT");
-      setTimerImages(() => 0);
-    },
-  });
-
   return (
     <AtomWrapper
       ref={ref}
@@ -117,19 +97,24 @@ const Projects = () => {
           background-color: #000000c0;
           backdrop-filter: blur(2px);
           gap: 20px;
-          hr {
-            filter: blur(1px);
-            opacity: 0.3;
-            width: 100%;
-            height: 1px;
-            background-color: transparent;
-            border: 1px solid ${primaryColor};
-            transition: all 0.3s ease-in-out;
-          }
+
           transition: all 0.3s ease-in-out;
         `}
       >
-        <hr />
+        <AtomWrapper
+          css={() => css`
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            z-index: 1;
+            height: 1px;
+            border-radius: 10px;
+            background-color: ${primaryColor};
+            gap: 10px;
+          `}
+        />
         <AtomWrapper
           css={() => css`
             background-color: transparent;
@@ -193,10 +178,8 @@ const Projects = () => {
 
             if (swipe < -swipeConfidenceThreshold) {
               setProjectImages("LEFT");
-              setTimerImages(() => 0);
             } else if (swipe > swipeConfidenceThreshold) {
               setProjectImages("RIGHT");
-              setTimerImages(() => 0);
             }
           }}
           css={() => css`
@@ -216,6 +199,7 @@ const Projects = () => {
               transition: box-shadow 0.3s ease-in-out;
               object-position: center center;
               object-fit: cover;
+              filter: blur(10px);
             }
             img:nth-of-type(2) {
               border: 1px solid ${primaryColor};
@@ -267,7 +251,6 @@ const Projects = () => {
             `}
             onClick={() => {
               setProjectImages("RIGHT");
-              setTimerImages(() => 0);
             }}
           >
             {`<`}
@@ -286,7 +269,6 @@ const Projects = () => {
             `}
             onClick={() => {
               setProjectImages("LEFT");
-              setTimerImages(() => 0);
             }}
           >
             {`>`}
@@ -301,18 +283,11 @@ const Projects = () => {
             width: 70vw;
             max-width: 1440px;
             z-index: 1;
-            height: 2px;
+            height: 1px;
             border-radius: 10px;
-            background-color: #1a1a1ac0;
+            background-color: ${primaryColor};
+
             gap: 10px;
-            ::before {
-              content: "";
-              border-radius: 10px;
-              background-color: ${primaryColor};
-              height: 1px;
-              width: ${(timerImages?.timer * 100) / timerImages?.end}%;
-              transition: all 0.98s linear;
-            }
           `}
         />
 
@@ -328,8 +303,6 @@ const Projects = () => {
               key={e.id}
               onHoverStart={() => {
                 setProject(e.position);
-                setTimer(() => 0);
-                setTimerImages(() => 0);
               }}
               css={() => css`
                 justify-content: center;
@@ -352,7 +325,6 @@ const Projects = () => {
                   height: 100%;
                   justify-content: center;
                   align-items: center;
-                  backdrop-filter: blur(2px);
                   border: 1px solid ${ChangeTransparency(primaryColor, 40)};
                   ${e.position === project.key &&
                   css`
@@ -388,19 +360,10 @@ const Projects = () => {
             align-items: center;
             width: 100%;
             z-index: 1;
-            height: 2px;
+            height: 1px;
             border-radius: 10px;
-            background-color: #1a1a1ac0;
+            background-color: ${primaryColor};
             gap: 10px;
-            ::before {
-              content: "";
-              border-radius: 10px;
-              background-color: ${primaryColor};
-
-              height: 1px;
-              width: ${(timer?.timer * 100) / timer?.end}%;
-              transition: all 0.98s linear;
-            }
           `}
         />
       </AtomWrapper>

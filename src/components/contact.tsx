@@ -100,7 +100,7 @@ const Contact = () => {
           `}
         >
           Any question you have or something you want to share with me,
-          <br /> you can email me at <b>skr13@outlook.com</b> or find me in this
+          <br /> you can email me at <b>me@willskr.com</b> or find me in this
           accounts:
         </AtomText>
         <AtomWrapper

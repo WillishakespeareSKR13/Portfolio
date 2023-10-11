@@ -121,7 +121,10 @@ const Navigation = () => {
         css={() => css`
           max-width: 1440px;
           flex-direction: row;
-          padding: 0px 90px 0px 90px;
+          padding: 0px 90px;
+          @media (max-width: 600px) {
+            padding: 0px 40px;
+          }
           justify-content: space-between;
           align-items: center;
           height: max-content;

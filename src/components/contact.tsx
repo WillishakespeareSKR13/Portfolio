@@ -73,6 +73,9 @@ const Contact = () => {
           position: relative;
           max-width: 1440px;
           padding: 40px 90px 40px 90px;
+          @media (max-width: 600px) {
+            padding: 40px 40px;
+          }
           z-index: 1;
           background-color: transparent;
           gap: 20px;

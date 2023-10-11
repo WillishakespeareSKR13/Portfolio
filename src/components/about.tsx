@@ -50,6 +50,9 @@ const About = () => {
         css={() => css`
           max-width: 1440px;
           padding: 0px 90px;
+          @media (max-width: 600px) {
+            padding: 0px 40px;
+          }
           z-index: 1;
           background-color: transparent;
           gap: 20px;

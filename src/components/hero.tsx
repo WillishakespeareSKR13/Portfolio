@@ -36,6 +36,10 @@ const Hero = () => {
           position: relative;
           max-width: 1440px;
           padding: 0px 90px;
+
+          @media (max-width: 600px) {
+            padding: 0px 40px;
+          }
           z-index: 1;
           background-color: transparent;
           gap: 20px;
@@ -140,38 +144,48 @@ const Hero = () => {
       </AtomWrapper>
       <AtomWrapper
         css={() => css`
+          overflow: hidden;
           position: absolute;
-          justify-content: center;
-          align-items: center;
-          right: 0;
+          width: 100%;
           height: 100%;
-          width: 120%;
-          margin: 0 -80% 0 0;
-          transform: skew(-30deg, 0deg);
-          background: ${ChangeBrightness(primaryColor, -50)};
-          transition: all 0.3s ease-in-out;
-          border-left: 1px solid ${primaryColor};
-
-          :after {
-            position: absolute;
-            content: "";
-            right: 0;
-            bottom: 0;
-            height: 50%;
-            width: 100%;
-            transform: skew(0deg, 0deg);
-            background: linear-gradient(
-              180deg,
-              transparent,
-              #000000a8 50%,
-              #000000 100%
-            );
-          }
-          z-index: 0;
-
-          transition: all 0.3s ease-in-out;
+          left: 0;
+          top: 0;
+          background: transparent;
         `}
-      />
+      >
+        <AtomWrapper
+          css={() => css`
+            justify-content: center;
+            align-items: center;
+            right: 0;
+            height: 100%;
+            width: 120%;
+            transform: skew(-30deg, 0deg) translateX(50%);
+            background: ${ChangeBrightness(primaryColor, -50)};
+            transition: all 0.3s ease-in-out;
+            border-left: 1px solid ${primaryColor};
+
+            :after {
+              position: absolute;
+              content: "";
+              right: 0;
+              bottom: 0;
+              height: 50%;
+              width: 100%;
+              transform: skew(0deg, 0deg);
+              background: linear-gradient(
+                180deg,
+                transparent,
+                #000000a8 50%,
+                #000000 100%
+              );
+            }
+            z-index: 0;
+
+            transition: all 0.3s ease-in-out;
+          `}
+        />
+      </AtomWrapper>
     </AtomWrapper>
   );
 };

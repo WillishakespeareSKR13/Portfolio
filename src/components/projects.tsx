@@ -30,6 +30,8 @@ const Projects = () => {
     <AtomWrapper
       ref={ref}
       css={() => css`
+        overflow: hidden;
+
         justify-content: flex-start;
         align-items: center;
         flex-direction: column;
@@ -43,6 +45,9 @@ const Projects = () => {
         css={() => css`
           max-width: 1440px;
           padding: 0px 90px;
+          @media (max-width: 600px) {
+            padding: 0px 40px;
+          }
           z-index: 1;
           background-color: transparent;
           gap: 20px;
@@ -92,6 +97,9 @@ const Projects = () => {
           width: 100%;
           max-width: 1440px;
           padding: 20px 90px;
+          @media (max-width: 600px) {
+            padding: 20px 40px;
+          }
           align-items: center;
           justify-content: center;
           background-color: #000000c0;
